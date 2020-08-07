@@ -30,6 +30,7 @@
             </div>
           </div>
         </div>
+<!--    -->
       <div class="md-modal modal-msg md-modal-transition" :class="{'md-show': loginModelFlag}">
         <div class="md-modal-inner">
           <div class="md-top">
