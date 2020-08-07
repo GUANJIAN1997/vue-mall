@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>title</title>
+  <script src="../node_modules/vue/dist/vue.js"></script>
+  <script src="../node_modules/axios/dist/axios.js"></script>
+</head>
+<body>
+  <div id="app">
+    <a href="javascript:;" @click="get">Get</a>
+    <a href="javascript:;" @click="post">Post</a>
+    <a href="javascript:;" @click="http">Http</a>
+    <span>{{msg}}</span>
+  </div>
+<script>
+  new Vue ({
+    el: "#app",
+    data: {
+      msg: ''
+    },
+    mounted () {
+      axios.interceptors.request.use(function (config) {
+        console.log("request init.")
+
+        return config
+      })
+      axios.interceptors.response.use(function (response) {
+        console.log("response init.")
+        return response;//不拦截就直接返回，如果要拦截就在上面定义
+      })
+    },
+    methods: {
+      get () {
+        axios.get("../package.json", {
+          params: {userId: '999'
+          },
+          headers: {
+            token: "jack"
+          }
+        }).then(res=>{
+          this.msg = res.data;
+        }).catch(function (error) {
+          console.log("error init" + error)
+        })
+      },
+      post () {
+        axios.post("../package.json",{
+          userId: "888"
+        },{
+          headers: {
+            token: "tom"
+          }
+        }).then(res=> {
+          this.msg = res.data
+        }).catch(function (error) {
+
+        })
+      },
+      http () {
+        axios({
+          url:"../package.json",
+          method: "get",
+          data: {
+            userId: "101"
+          },
+          headers: {
+            token: "http-test"
+          }
+        }).then(res=>{
+          this.msg = res.data
+        })
+
+      }
+    }
+  })
+</script>
+</body>
+</html>
