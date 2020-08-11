@@ -69,7 +69,7 @@ router.post("/addCart", function (req,res,next) {
         msg: err1.message
       })
     }else {
-      console.log("userDoc:"+userdoc);
+      // console.log("userDoc:"+userdoc);
       if (userdoc) {
         let goodsItem = '';
         userdoc.cartList.forEach(function (item) {
@@ -102,6 +102,7 @@ router.post("/addCart", function (req,res,next) {
               })
             }else {
               if (doc) {
+                console.log(doc);
                 doc.productNum = 1;
                 doc.checked = 1;
                 userdoc.cartList.push(doc);
