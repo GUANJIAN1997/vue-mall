@@ -138,7 +138,7 @@ import NavHeader from './../components/NavHeader'
 import NavFooter from './../components/NavFooter'
 import NavBread from './../components/NavBread'
 import axios from 'axios'
-import {currency} from "../util/currency";
+// import {currency} from "../util/currency";
 export default {
   data () {
     return {
@@ -158,9 +158,9 @@ export default {
     NavBread,
     NavFooter
  },
-  filters: {
-    currency: currency
-  },
+  // filters: {
+  //   currency: currency
+  // },
   methods: {
    init () {
      axios.get('/users/cartList').then((response) => {
